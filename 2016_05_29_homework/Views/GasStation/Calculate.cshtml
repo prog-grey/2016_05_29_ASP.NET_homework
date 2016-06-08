@@ -1,0 +1,19 @@
+﻿
+@{
+    Layout = null;
+}
+
+<table width="300" border="0" style="text-align:center;">
+	<tr>
+		<th>Кол-во</th>
+		<th>Цена</th>
+		<th>Скидка</th>
+		<th>Итого</th>
+	</tr>
+	<tr>
+		<td> @ViewBag.GasStation.Count </td>
+		<td> @ViewBag.GasStation.Price </td>
+		<td> @ViewBag.GasStation.Discount </td>
+		<td> @ViewBag.GasStation.Total </td>
+	</tr>
+</table>

@@ -1,0 +1,58 @@
+﻿@{
+	Layout = null;
+	int i = 0;
+	string idCheckBox;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<title>User</title>
+	<style>
+		table{
+			width: 750px;
+		}
+		table td{
+			padding: 3px 5px;
+		}
+	</style>
+</head>
+<body>
+	<table border="1" cellpadding="0" cellspacing="0" id="tableUser">
+		<tr>
+			<th>Login</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Address</th>
+			<th>Active</th>
+		</tr>
+		@foreach (var user in ViewBag.Um)
+		{
+			idCheckBox = "user_" + i.ToString();
+			<tr>
+				<td>@user.Login</td>
+				<td>@user.Email</td>
+				<td>@user.Phone</td>
+				<td>@user.Address</td>
+				<td> <input id=@idCheckBox type="checkbox" value=@user.Active.ToString() disabled="disabled"/> </td>
+			</tr>
+			i++;
+		}
+	</table>
+
+	<script>
+		$(function () {
+
+			$("#tableUser input:checkbox").each(function (i, elem) {
+				if ($(elem).prop("value") == "True")
+					$(elem).prop("checked", "checked");
+			});
+
+		});
+	</script>
+
+</body>
+</html>

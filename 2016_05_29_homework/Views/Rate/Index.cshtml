@@ -1,0 +1,45 @@
+﻿@using System.Web.Configuration;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rate</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<!--script src="//code.jquery.com/jquery-2.2.4.min.js"></script-->
+</head>
+<body>
+
+	<h1>Курсы валют</h1>
+	<div id="exchangeRate"></div>
+
+	<script>
+		$(function () {
+
+			setInterval(function () {
+				$.ajax({
+					type: 'POST',
+					dataType: 'json',
+					url: '@Url.Action("json", "Rate")',
+					success: function (data) {
+						var str = "<table border='1' cellpadding='0' cellspacing='0' width='500'>";
+						str += "<tr> <th>Валюта</th> <th>Покупка</th> <th>Продажа</th> </tr>";
+						for (var i = 0; i < Object.keys(data).length; i++) {
+							str += "<tr><td>" + data[i].RateName + "</td><td>" + data[i].RateBuy + "</td><td>" + data[i].RateSale + "</td></tr>";
+							console.log(data[i]);
+						}
+						str += "</table>";
+						$("#exchangeRate").html(str);
+					}
+				});
+			}, Number(@WebConfigurationManager.AppSettings["rateSetInterval"]) );
+
+		});
+	</script>
+
+</body>
+</html>

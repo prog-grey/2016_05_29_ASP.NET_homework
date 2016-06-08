@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Gas Station</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+</head>
+<body>
+	<form method="post" action=@Url.Action("calculate", "GasStation") data-ajax="true" data-ajax-mode="replace" data-ajax-update="#result">
+		<p>Цена за литр <input type="text" name="Price" size="7"/> </p>
+		<p>Кол-во литров <input type="text" name="Count" size="5" /> </p>
+		<input type="submit" value="Отправить" />
+	</form>
+	<hr/>
+	<p id="result"></p>
+</body>
+</html>
